@@ -1,58 +1,22 @@
 import MenuItem from '../menu-item/menu-item.component';
 import './directory.styles.scss'
 import React from "react"
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectDirectorySections } from '../../Redux/directory/directory.selectors';
 
-class Directory extends React.Component{
-    constructor(){
-        super();
-
-        this.state = {
-            sections: [{
-                title: 'BRO TANKS',
-                imageUrl: 'https://i.ibb.co/X8mnfvp/BRO-TANK.png',
-                id: 1,
-                linkUrl: 'shop/brotanks'
-              },
-              {
-                title: 'JACKETS',
-                imageUrl: 'https://i.ibb.co/KWsxHr3/JACKET.png',
-                id: 2,
-                linkUrl: 'shop/jackets'
-              },
-              {
-                title: 'SWEATS',
-                imageUrl: 'https://i.ibb.co/fpwLNQY/SWEATS.jpg',
-                id: 3,
-                linkUrl: 'shop/sweats'
-              },
-              {
-                title: 'WOMENS',
-                imageUrl: 'https://i.ibb.co/sbKMDGL/WOEMNS.jpg',
-                size: 'large',
-                id: 4,
-                linkUrl: 'shop/womens'
-              },
-              {
-                title: 'MENS',
-                imageUrl: 'https://i.ibb.co/GFyj5bS/MENS.jpg',
-                size: 'large',
-                id: 5,
-                linkUrl: 'shop/mens'
-                }
-            ]
-        }
+const Directory =  ({sections}) =>(
+    <div className="directory-menu">
+    {
+        sections.map(({id, ...otherSectionProps})=>(
+            <MenuItem key={id} {...otherSectionProps} />
+        ))
     }
-    render() {
-        return (
-            <div className="directory-menu">
-                {
-                    this.state.sections.map(({id, ...otherSectionProps})=>(
-                        <MenuItem key={id} {...otherSectionProps} />
-                    ))
-                }
-            </div>
-        );
-    }
-}
+</div>
+)
 
-export default Directory;
+
+const mapStateToProps = createStructuredSelector({
+    sections: selectDirectorySections
+})
+export default connect(mapStateToProps)(Directory);
