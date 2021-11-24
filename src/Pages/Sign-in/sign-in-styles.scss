@@ -1,13 +1,24 @@
-.sign-in-outer {
+.sign-in {
     width: 380px;
     display: flex;
     flex-direction: column;
-    .title{
-        margin: 10px 0;
+  
+    .title {
+      margin: 10px 0;
+    }
+  
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
 
+    .Link-To-Sign-Up{
+      background-color: black;
+      color: white;
+      &:hover {
+        background-color: black;
+        color:white;
+        border: 1px solid black;
+      }
     }
-    .buttons{ 
-        display: flex;
-        justify-content: space-between;
-    }
-}
+  }
